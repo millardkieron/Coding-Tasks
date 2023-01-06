@@ -19,7 +19,7 @@ for g in genes:
 
 exome = tabix.open("/home/kieron/Downloads/gnomad.exomes.r2.1.1.sites.22.liftover_grch38.vcf.bgz")
 
-exo = exome.query("chr22", 15528124, 15528125)
+exo = exome.query("chr22", 15528125, 15528125)
 
 ex = ()
 
@@ -33,15 +33,20 @@ edict = {}
 glist = []
 elist = []
 
-if geno[3] == ref and geno[4] == alt:
+if len(geno) > 0:
+	if geno[3] == ref and geno[4] == alt:
 
-	geno = geno[7]
-if ex[3] == ref and ex[4] == alt:
+		geno = geno[7]
 
-	ex = ex[7]
+	geno = geno.split(";")
 
-geno = geno.split(";")
-ex = ex.split(";")
+
+if len(ex) > 0: 
+
+	if ex[3] == ref and ex[4] == alt:
+
+		ex = ex[7]
+	ex = ex.split(";")
 
 for g in geno:
 	if sign in g:
@@ -68,63 +73,3 @@ for filt in filter_list:
 
 print(glist)
 print(elist)
-
-
-
-
-
-
-#print(both)
-
-
-#for b in both:
-#	if b[3] == ref and b[4] == alt:
-
-
-
-
-
-
-
-
-
-
-
-#print(g)
-#print(e)
-
-		
-
-
-#print(dict1)
-#print(seven)
-
-
-
-
-
-
-#print(anno)
-
-
-
-
-
-
-
-
-
-#if geno[3] == ref and geno[4] == alt:
-
-#	genoinfo = geno[7]
-
-#if ex[3] == ref and ex[4] == alt:
-
-#	exinfo = ex[7]
-#else:
-#	break
-
-
-#print(genoinfo)
-#print(exinfo)
-#print(anno)
